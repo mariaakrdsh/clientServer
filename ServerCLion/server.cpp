@@ -1,9 +1,8 @@
-#include <fstream>
 #include <iostream>
-#include <regex>
-#include <windows.h>
-#include "server.h"
 #pragma comment(lib, "ws2_32.lib")
+#include <winsock2.h>
+#include <fstream>
+#include "server.h"
 
 //Info for "Who" command
 const char authorName[] = "Maria Kardash";
@@ -59,7 +58,8 @@ int startServer(int argc, char* argv[],int port) {std::string prefix = "SERVER>"
     int iResult;
     WSADATA wsaData;
 // Initialize Winsock
-    iResult = WSAStartup(MAKEWORD(2,2), &wsaData);
+    WORD DLLVERSION = MAKEWORD(2,2);
+    iResult = WSAStartup(DLLVERSION, &wsaData);
     if (iResult != 0) {
         printf("WSAStartup failed: %d\n", iResult);
         return 1;

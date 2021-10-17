@@ -4,7 +4,6 @@
 #include <regex>
 #include <windows.h>
 #include<Winsock2.h>
-#include <Ws2tcpip.h>
 
 
 #pragma comment (lib, "Ws2_32.lib")
@@ -25,11 +24,10 @@ int mainClientFunc(int argc, char* argv[],int port) {
     std::string textFromServerString;
 
     sock = socket(AF_INET, SOCK_STREAM, 0);
+    serv_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_port = htons(port);
 
-
-    inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr);
 
     if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
         printf("\nConnection failed:( \n");

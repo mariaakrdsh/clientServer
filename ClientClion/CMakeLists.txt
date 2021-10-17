@@ -7,7 +7,7 @@ set(PROJECT_SOURCES
         )
 
 set(PROJECT_HEADERS
-        client.h
-        client.cpp client.h)
+        client.h)
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} ${PROJECT_HEADERS})
+target_link_libraries(client ws2_32)
